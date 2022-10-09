@@ -15,35 +15,42 @@
 	<description>Demo project for test on exercise two</description>
 	<properties>
 		<java.version>19</java.version>
+		<spring-version>2.7.4</spring-version>
+		<keycloak-version>19.0.3</keycloak-version>
+		<lombok>1.18.24</lombok>
+		<spring-security-test>5.7.3</spring-security-test>
+		<assertj-core>3.22.0</assertj-core>
+		<maven-surefire-plugin>2.22.2</maven-surefire-plugin>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-			<version>2.7.4</version>
+			<version>${spring-version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-			<version>2.7.4</version>
+			<version>${spring-version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<version>2.7.4</version>
+			<version>${spring-version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.keycloak</groupId>
 			<artifactId>keycloak-spring-boot-starter</artifactId>
-			<version>19.0.3</version>
+			<version>${keycloak-version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+			<version>${lombok}</version>
 			<optional>true</optional>
 		</dependency>
 
@@ -56,14 +63,14 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
-			<version>5.7.3</version>
+			<version>${spring-security-test}</version>
 			<scope>test</scope>
 		</dependency>
 
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-			<version>3.22.0</version>
+			<version>${assertj-core}</version>
         </dependency>
     </dependencies>
 
@@ -72,7 +79,7 @@
 			<dependency>
 				<groupId>org.keycloak.bom</groupId>
 				<artifactId>keycloak-adapter-bom</artifactId>
-				<version>19.0.3</version>
+				<version>${keycloak-version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -96,7 +103,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.22.2</version>
+				<version>${maven-surefire-plugin}</version>
 				<configuration>
 					<skipTests>true</skipTests>
 				</configuration>
