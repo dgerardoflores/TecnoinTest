@@ -45,4 +45,13 @@ public class ProductsController {
 
         return response;
     }
+
+    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ResponseDTO> deleteProduct(
+            @PathVariable(value = "id") Long id
+    ) {
+        ResponseEntity<ResponseDTO> response = productsService.deleteProduct(id);
+
+        return response;
+    }
 }
