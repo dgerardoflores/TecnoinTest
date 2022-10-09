@@ -72,7 +72,13 @@
             <artifactId>assertj-core</artifactId>
 			<version>${assertj-core}</version>
         </dependency>
-    </dependencies>
+
+		<dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>mssql-jdbc</artifactId>
+			<version>11.2.1.jre18</version>
+		</dependency>
+	</dependencies>
 
 	<dependencyManagement>
 		<dependencies>
@@ -119,4 +125,11 @@
 		</plugins>
 	</build>
 
+	<repositories>
+		<repository>
+			<id>external</id>
+			<name>External Project Repo</name>
+			<url>file:///${project.basedir}/lib</url>
+		</repository>
+	</repositories>
 </project>
