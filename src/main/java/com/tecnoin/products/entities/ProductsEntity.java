@@ -9,10 +9,12 @@ import javax.persistence.*;
 public class ProductsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true, nullable = false)
+    @Column(name = "id", unique = true, nullable = false, length = 8)
     private Long id;
 
-    private String codigo;
+    @Column(name = "codigo", length = 20)
+    private String code;
 
-    private String nombre;
+    @Column(name = "nombre", length = 200)
+    private String name;
 }
