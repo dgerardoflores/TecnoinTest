@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import java.util.Optional;
 
 @Service
 public class ProductsServiceImp implements ProductsService {
@@ -73,6 +74,44 @@ public class ProductsServiceImp implements ProductsService {
 
             response.setCode(StatusCodes.ERROR);
             response.setError("An error occurred while trying to create the product");
+        }
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<ResponseDTO> updateProduct(Long id, ProductDTO product) {
+        ResponseDTO response = new ResponseDTO();
+
+        try {
+            Optional<ProductsEntity> tmpProduct = productsRepository.findById(id);
+
+            if (!tmpProduct.isPresent()) {
+                response.setCode(StatusCodes.ERROR);
+                response.setError("The product does not exist");
+
+                return new ResponseEntity<>(response, HttpStatus.OK);
+            }
+
+            String code = product.getCode();
+            String name = product.getName();
+
+            ProductsEntity entity = tmpProduct.get();
+            if (code != null) {
+                entity.setCode(code);
+            }
+            if (name != null) {
+                entity.setName(name);
+            }
+
+            productsRepository.save(entity);
+
+            response.setCode(StatusCodes.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            response.setCode(StatusCodes.ERROR);
+            response.setError("An error occurred while trying to update the product");
         }
 
         return new ResponseEntity<>(response, HttpStatus.OK);

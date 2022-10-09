@@ -8,4 +8,6 @@ public interface ProductsService {
     ResponseEntity<ResponseDTO> getProducts(int page, int size);
 
     ResponseEntity<ResponseDTO> createProduct(ProductDTO product);
+
+    ResponseEntity<ResponseDTO> updateProduct(Long id, ProductDTO product);
 }
