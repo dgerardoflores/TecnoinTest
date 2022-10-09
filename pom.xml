@@ -14,7 +14,7 @@
 	<name>products</name>
 	<description>Demo project for test on exercise two</description>
 	<properties>
-		<java.version>19</java.version>
+		<java.version>1.8</java.version>
 		<spring-version>2.7.4</spring-version>
 		<keycloak-version>19.0.3</keycloak-version>
 		<lombok>1.18.24</lombok>
@@ -106,6 +106,14 @@
 				<version>${maven-surefire-plugin}</version>
 				<configuration>
 					<skipTests>true</skipTests>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 		</plugins>
