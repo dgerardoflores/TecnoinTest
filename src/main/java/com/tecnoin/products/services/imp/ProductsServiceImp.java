@@ -44,9 +44,26 @@ public class ProductsServiceImp implements ProductsService {
         ResponseDTO response = new ResponseDTO();
 
         try {
+            String code = product.getCode();
+            String name = product.getName();
+
+            if (code == null ? true : code.contentEquals("")) {
+                response.setCode(StatusCodes.BAD_REQUEST);
+                response.setError("The code parameter is requerid");
+
+                return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+            }
+
+            if (name == null ? true : name.contentEquals("")) {
+                response.setCode(StatusCodes.BAD_REQUEST);
+                response.setError("The name parameter is requerid");
+
+                return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+            }
+
             ProductsEntity entity = new ProductsEntity();
-            entity.setCode(product.getCode());
-            entity.setName(product.getName());
+            entity.setCode(code);
+            entity.setName(name);
 
             productsRepository.save(entity);
 
