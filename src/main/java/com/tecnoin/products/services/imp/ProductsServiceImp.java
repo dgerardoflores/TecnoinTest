@@ -116,4 +116,31 @@ public class ProductsServiceImp implements ProductsService {
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @Override
+    public ResponseEntity<ResponseDTO> deleteProduct(Long id) {
+        ResponseDTO response = new ResponseDTO();
+
+        try {
+            boolean exists = productsRepository.existsById(id);
+
+            if (!exists) {
+                response.setCode(StatusCodes.ERROR);
+                response.setError("The product does not exist");
+
+                return new ResponseEntity<>(response, HttpStatus.OK);
+            }
+
+            productsRepository.deleteById(id);
+
+            response.setCode(StatusCodes.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            response.setCode(StatusCodes.ERROR);
+            response.setError("An error occurred while trying to delete the product");
+        }
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }

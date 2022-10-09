@@ -10,4 +10,6 @@ public interface ProductsService {
     ResponseEntity<ResponseDTO> createProduct(ProductDTO product);
 
     ResponseEntity<ResponseDTO> updateProduct(Long id, ProductDTO product);
+
+    ResponseEntity<ResponseDTO> deleteProduct(Long id);
 }
