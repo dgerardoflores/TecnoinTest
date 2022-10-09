@@ -40,9 +40,8 @@ public class KeycloakSecurityConfig extends KeycloakWebSecurityConfigurerAdapter
                 .disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST).hasAnyRole("BO_ADMIN")
-                .antMatchers(HttpMethod.PATCH).hasAnyRole("BO_ADMIN")
-                .antMatchers(HttpMethod.DELETE).hasAnyRole("BO_ADMIN")
                 .antMatchers(HttpMethod.PUT).hasAnyRole("BO_ADMIN")
+                .antMatchers(HttpMethod.DELETE).hasAnyRole("BO_ADMIN")
                 .antMatchers("/tecnoin/v1/products**").hasAnyRole("BO_ADMIN", "BO_USUARIO");
     }
 
