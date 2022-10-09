@@ -1,6 +1,7 @@
 package com.tecnoin.products.services.imp;
 
 import com.tecnoin.products.entities.ProductsEntity;
+import com.tecnoin.products.models.dto.ProductDTO;
 import com.tecnoin.products.models.dto.ResponseDTO;
 import com.tecnoin.products.models.enums.StatusCodes;
 import com.tecnoin.products.repositories.ProductsRepository;
@@ -33,6 +34,28 @@ public class ProductsServiceImp implements ProductsService {
 
             response.setCode(StatusCodes.ERROR);
             response.setError("An error occurred when obtaining the list of products");
+        }
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<ResponseDTO> createProduct(ProductDTO product) {
+        ResponseDTO response = new ResponseDTO();
+
+        try {
+            ProductsEntity entity = new ProductsEntity();
+            entity.setCode(product.getCode());
+            entity.setName(product.getName());
+
+            productsRepository.save(entity);
+
+            response.setCode(StatusCodes.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            response.setCode(StatusCodes.ERROR);
+            response.setError("An error occurred while trying to create the product");
         }
 
         return new ResponseEntity<>(response, HttpStatus.OK);
