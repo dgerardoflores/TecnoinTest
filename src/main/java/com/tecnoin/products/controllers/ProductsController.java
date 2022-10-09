@@ -5,6 +5,7 @@ import com.tecnoin.products.models.dto.ProductDTO;
 import com.tecnoin.products.models.dto.ResponseDTO;
 import com.tecnoin.products.services.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
@@ -16,7 +17,7 @@ public class ProductsController {
     @Autowired
     ProductsService productsService;
 
-    @GetMapping()
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ResponseDTO> getProducts(
             @RequestParam int page,
             @RequestParam int size
@@ -26,7 +27,7 @@ public class ProductsController {
         return response;
     }
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ResponseDTO> createProduct(
         @RequestBody @NotNull @Validated ProductDTO product
     ) {
@@ -35,5 +36,13 @@ public class ProductsController {
         return response;
     }
 
-    
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ResponseDTO> updateProduct(
+            @PathVariable(value = "id") Long id,
+            @RequestBody @NotNull @Validated ProductDTO product
+    ) {
+        ResponseEntity<ResponseDTO> response = productsService.updateProduct(id, product);
+
+        return response;
+    }
 }
